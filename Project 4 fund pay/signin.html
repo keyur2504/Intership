@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Option 1: Include in HTML -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-7 p-0">
+          <div class="image">
+            <img src="login.png" alt="" class="img-fluid" id="loginpng" />
+            <div class="text1 text-white position-absolute">
+              <img src="text.png" alt="" class="text2" />
+              <p class="lorem mt-4">
+                Securely pay anyone, anywhere, in-store or online using Wallet
+                or directly from your bank account. Easily
+                <b>send and receive money hassle-free.</b>
+              </p>
+            </div>
+            <img src="back.png" alt="" class="position-absolute bimg" />
+          </div>
+        </div>
+        <div class="col-md-5 bgcolor">
+          <div class="main2 p-4">
+            <div class="logo">
+              <img
+                src="logo.png"
+                alt=""
+                width="178px"
+                height="54.36px"
+                class="mb-5 mt-5 limg"
+              />
+              <p class="sign">Sign in</p>
+              <p class="welcome">Welcome Login with your FUND PAY account.</p>
+              <p class="help">
+                Help
+                <i
+                  class="bi bi-question-circle-fill"
+                  style="color: #cfa767"
+                ></i>
+              </p>
+            </div>
+            <div class="form mt-5">
+              <label for="name" class="label" id="lab"
+                >Email Address/Mobile Number</label
+              >
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="abc@gmail.com"
+              />
+              <div id="email-error" class="error-message"></div>
+              <label for="password" class="label mt-3" id="lab">Password</label>
+              <div class="input-group">
+                <input type="password" id="password" class="form-control" />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  id="togglePassword"
+                >
+                  <i class="bi bi-eye-fill"></i>
+                </button>
+              </div>
+              <div id="password-error" class="error-message"></div>
+              <div class="form-check mt-3">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label class="form-check-label" for="exampleCheck1" id="lab"
+                  >Remember me</label
+                >
+                <label class="form-check-label ml-4" id="forpassword">
+                  <!-- Changed button to anchor tag -->
+                  <span onclick="forpass()">Forget Password</span>
+                </label>
+              </div>
+              <button
+                class="btn btn-lg text-white mt-4"
+                id="btn"
+                onclick="return validateForm();"
+              >
+                LOGIN
+              </button>
+              <p class="text mt-4 acc">
+                Doesn’t have any account?
+                <a href="" class="link">Register here</a>
+              </p>
+              <p class="text text-dark mt-4 para">
+                Use the application according to policy rules. Any kinds of
+                violations will be subject to sanctions
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="errorModal"
+      tabindex="-1"
+      aria-labelledby="errorModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="errorModalLabel"></h5> -->
+            <!-- <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button> -->
+          </div>
+          <div class="modal-body" id="errorModalBody">
+            <!-- Error message will be displayed here -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Okay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title">Task Details View</h5> -->
+          </div>
+          <div class="modal-body">
+            <span
+              >New Password<span><input type="text" id="newpass" /></span
+            ></span>
+            <div id="message" class="text text-danger"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              data-bs-dismiss="modal"
+              onclick="close()"
+            >
+              Close
+            </button>
+            <!-- <button
+              type="button"
+              class="btn btn-outline-success"
+              onclick="close()"
+            >
+              Close
+            </button> -->
+            <button
+              type="button"
+              class="btn btn-outline-success"
+              onclick="okay()"
+            >
+              Okay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function popup() {
+        var modal = new bootstrap.Modal(document.getElementById("myModal"));
+        modal.show();
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("email").addEventListener("input", function () {
+          document.getElementById("email-error").innerHTML = "";
+        });
+
+        document
+          .getElementById("password")
+          .addEventListener("input", function () {
+            document.getElementById("password-error").innerHTML = "";
+          });
+
+        // Toggle password visibility
+        document
+          .getElementById("togglePassword")
+          .addEventListener("click", function () {
+            var passwordInput = document.getElementById("password");
+            var icon = document.querySelector("#togglePassword i");
+
+            if (passwordInput.type === "password") {
+              passwordInput.type = "text";
+              icon.classList.remove("bi-eye-fill");
+              icon.classList.add("bi-eye-slash-fill");
+            } else {
+              passwordInput.type = "password";
+              icon.classList.remove("bi-eye-slash-fill");
+              icon.classList.add("bi-eye-fill");
+            }
+          });
+      });
+
+      function validateForm() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        var isValid = true;
+
+        if (email.trim() === "") {
+          document.getElementById("email-error").innerHTML =
+            "Email is required.";
+          isValid = false;
+        } else {
+          document.getElementById("email-error").innerHTML = "";
+        }
+
+        if (password.trim() === "") {
+          document.getElementById("password-error").innerHTML =
+            "Password is required.";
+          isValid = false;
+        } else {
+          document.getElementById("password-error").innerHTML = "";
+        }
+
+        if (!isValid) {
+          return false;
+        }
+
+        fetch("http://192.168.29.183:8000/login", {
+          method: "POST",
+          headers: {
+            accept: "application/json",
+          },
+          body: new URLSearchParams({
+            grant_type: "",
+            username: email,
+            password: password,
+            scope: "",
+            client_id: "",
+            client_secret: "",
+          }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(res.detail.message);
+            }
+          })
+          .then((res) => {
+            if (res.detail && res.detail.message) {
+              document.getElementById("errorModalBody").textContent =
+                res.detail.message;
+              var errorModal = new bootstrap.Modal(
+                document.getElementById("errorModal")
+              );
+              errorModal.show();
+            }
+          })
+          .catch((error) => {
+            document.getElementById("errorModalBody").textContent =
+              error.message;
+            var errorModal = new bootstrap.Modal(
+              document.getElementById("errorModal")
+            );
+            errorModal.show();
+          });
+
+        return isValid;
+      }
+      function close() {
+        console.log("hit the button");
+        window.location.href = signin.html;
+        sessionStorage.removeItem("token");
+      }
+      function okay() {
+        var password = document.getElementById("newpass").value;
+        var token = sessionStorage.getItem("token");
+
+        fetch("http://192.168.29.183:8000/reset_password", {
+          method: "PUT",
+          headers: {
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token: token,
+            password: password,
+          }),
+        })
+          .then((res) => {
+            console.log("Response status:", res.status);
+            if (res.status === 200) {
+              return res.json().then((data) => {
+                console.log("Success response:", data);
+                return { success: true, message: data.message };
+              });
+            } else {
+              return res.json().then((data) => {
+                console.log("Error response:", data);
+                return { success: false, message: data.message };
+              });
+            }
+          })
+          .then((res) => {
+            console.log("Final response:", res);
+            // Display the message in the modal body
+            var messageElement = document.getElementById("message");
+
+            // Set color based on success
+            messageElement.style.color = res.success ? "green" : "red";
+
+            messageElement.textContent = res.message;
+          })
+          .catch((error) => {
+            console.error("Error resetting password:", error);
+            alert(
+              "An error occurred while resetting your password. Please try again later."
+            );
+          });
+      }
+
+      var fortoken = window.location.search;
+      var lastindex = fortoken.lastIndexOf("=");
+      var token = fortoken.substring(lastindex + 1, fortoken.length);
+      sessionStorage.setItem("token", token);
+      console.log("token=>", token);
+
+      if (token) {
+        popup();
+      }
+
+      function forpass() {
+        var email = document.getElementById("email").value;
+        console.log(email);
+
+        fetch("http://192.168.29.183:8000/password?user_email=" + email, {
+          method: "POST",
+          headers: {
+            accept: "application/json",
+            "content-type": "application/x-www-form-urlencoded",
+          },
+          body: "",
+        })
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            alert(res.message);
+          });
+      }
+    </script>
+  </body>
+</html>

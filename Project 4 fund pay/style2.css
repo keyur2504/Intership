@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow: hidden;
+    background-color: black;
+    color: white;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    width: 500px;   
+}
+#exampleCheck1:checked {
+    background-color: #cfa767;
+}
+.sign{
+    font-size: 40px;
+    font-weight: 600;
+    font-family: poppiens;
+}
+.welcome {
+    font-size: 0.9vw;
+}
+.help {
+    margin-top: -6.5vw;
+    float: right;
+}
+#btn {
+    background-color: #cfa767;
+    width: 100%;
+    font-weight: 700;
+}
+#forpassword{
+    float: right;
+    text-decoration: none;
+    color: black;
+}
+.acc{
+    text-align: center;
+}
+.link{
+    color: #cfa767;
+    text-decoration: none;
+}
+.para{
+    text-align: center;
+        
+}

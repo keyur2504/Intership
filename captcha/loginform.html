@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Option 1: Include in HTML -->
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <!-- <link rel="stylesheet" href="script.js"> -->
+    
+  </head>
+  <body>
+    <div class="login-form">
+      <div class="form-title">Member Login</div>
+      <div class="form-input">
+        <label for="username">Username</label>
+        <input type="text" id="username" />
+      </div>
+      <div class="form-input">
+        <label for="password">Password</label>
+        <input type="password" id="password" />
+      </div>
+      <div class="captcha">
+        <label for="captcha-input">Enter Captcha</label>
+        <div class="preview"></div>
+        <div class="captcha-form">
+          <input
+            type="text"
+            id="captcha-form"
+            placeholder="Enter Captcha text"
+          />
+          <button type="button" class="captcha-refresh">
+            <i class="bi bi-arrow-clockwise"></i>
+          </button>
+        </div>
+      </div>
+      <div class="form-input">
+        <button id="login-btn">Login</button>
+      </div>
+    </div>
+  </body>
+  <script defer>
+    (function () {
+     const fonts = ["cursive", "sans-serif", "serif", "monospace"];
+     let captchaValue = "";
+
+     function generateCaptcha() {
+       let value = "";
+       for (let i = 0; i < 5; i++) {
+         const randomChar = String.fromCharCode(
+           Math.floor(Math.random() * 26) + 65
+         );
+         value += randomChar;
+       }
+       captchaValue = value;
+     }
+
+     function setCaptcha() {
+       let html = captchaValue
+         .split("")
+         .map((char) => {
+           const rotate = -20 + Math.trunc(Math.random() * 30);
+           const font = Math.trunc(Math.random() * fonts.length);
+           return `<span
+                     style="transform:rotate(${rotate}deg);
+                     font-family:${fonts[font]}"
+                 >${char}</span>`;
+         })
+         .join("");
+       document.querySelector(".login-form .captcha .preview").innerHTML =
+         html;
+     }
+
+     function initCaptcha() {
+         const captchaRefreshButton = document.querySelector(".login-form .captcha .captcha-refresh");
+console.log(captchaRefreshButton);  // Check if the button is found
+captchaRefreshButton.addEventListener("click", function () {
+ generateCaptcha();
+ setCaptcha();
+});
+generateCaptcha();
+setCaptcha();
+}
+
+     initCaptcha();
+
+     document
+       .querySelector(".login-form #login-btn")
+       .addEventListener("click", function () {
+         let inputCaptchaValue = document.querySelector(
+           ".login-form .captcha-form input"
+         ).value;
+         if (inputCaptchaValue === captchaValue) {
+           alert("Logging In!");
+         } else {
+           alert("Invalid captcha");
+         }
+       });
+   })();
+ </script>
+</html>

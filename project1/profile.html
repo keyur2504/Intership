@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style2.css" />
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function getdata() {
+      var username = document.getElementById("username").value
+      var email = document.getElementById("email").value
+      var fname = document.getElementById("fname").value
+      var date = document.getElementById("date").value
+      var pno = document.getElementById("pno").value
+      var uid = sessionStorage.getItem("user_id")
+
+      fetch('http://127.0.0.1:8000/update_profile/' + uid, {
+        method: 'PUT',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'username': username,
+          'email': email,
+          'full_name': fname,
+          'dob': date,
+          'phone_no': pno
+        })
+      });
+
+      var fname = document.getElementById("fname").value;
+      var date = document.getElementById("date").value;
+      var pno = document.getElementById("pno").value;
+
+      if (!fname.trim()) {
+        document.getElementById("fnameError").style.display = "block";
+        return;
+      } else {
+        document.getElementById("fnameError").style.display = "none";
+      }
+
+      if (!date.trim()) {
+        document.getElementById("dateError").style.display = "block";
+        return;
+      } else {
+        document.getElementById("dateError").style.display = "none";
+      }
+
+      if (!pno.trim()) {
+        document.getElementById("pnoError").style.display = "block";
+        return;
+      } else {
+        document.getElementById("pnoError").style.display = "none";
+      }
+
+      // Proceed with updating profile if validation passes
+      // ...
+    }
+
+    function getitem() {
+      var username = document.getElementById("username");
+      var email = document.getElementById("email");
+      var fname = document.getElementById("fname");
+      var date = document.getElementById("date");
+      var pno = document.getElementById("pno");
+      var uid = sessionStorage.getItem("user_id");
+
+      fetch('http://127.0.0.1:8000/get_profile/' + uid, {
+        headers: {
+          'accept': 'application/json'
+        }
+      })
+        .then((res) => { return res.json() })
+        .then((data) => {
+          console.log(data);
+          document.getElementById("username").value = data.username
+          document.getElementById("email").value = data.email
+          document.getElementById("fname").value = data.full_name
+          document.getElementById("date").value = data.dob
+          document.getElementById("pno").value = data.phone_no
+        })
+    }
+    getitem()
+
+    function resetValidation(elementId) {
+      document.getElementById(elementId).style.display = "none";
+    }
+
+    // Function to hide validation messages on input
+    function hideValidationMessages() {
+      document.getElementById("fnameError").style.display = "none";
+      document.getElementById("dateError").style.display = "none";
+      document.getElementById("pnoError").style.display = "none";
+    }
+
+    // Event listeners to hide validation messages when typing
+    document.getElementById("fname").addEventListener("input", function () {
+      resetValidation("fnameError");
+    });
+
+    document.getElementById("date").addEventListener("input", function () {
+      resetValidation("dateError");
+    });
+
+    document.getElementById("pno").addEventListener("input", function () {
+      resetValidation("pnoError");
+    });
+  </script>
+</head>
+
+<body>
+
+  <div class="main container"> <!-- Added container class for responsiveness -->
+    <form>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Username" readonly />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Email" readonly />
+      </div>
+      <div class="mb-3">
+        <label for="fname" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fname" oninput="resetValidation('fnameError')" />
+        <div id="fnameError" class="invalid-feedback">
+          Please provide a valid full name.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="date" oninput="resetValidation('dateError')" />
+        <div id="dateError" class="invalid-feedback">
+          Please provide a valid date of birth.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="pno" class="form-label">Phone Number</label>
+        <input type="tel" class="form-control" id="pno" oninput="resetValidation('pnoError')" />
+        <div id="pnoError" class="invalid-feedback">
+          Please provide a valid phone number.
+        </div>
+      </div>
+      <button type="button" class="btn btn-success" onclick="getdata()">Update</button>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and additional scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

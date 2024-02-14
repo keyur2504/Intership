@@ -1,0 +1,307 @@
+.imglight{
+    background: rgb(47, 122, 181);
+    background: linear-gradient(330deg, rgba(47, 122, 181, 0.9) 40%, rgba(9, 32,63,0.9)74%);
+    width: 100%;
+}
+.imgtext{
+    width: 450px;
+    font-size: 30px!important;
+    font-weight: 500;
+    /* line-height: 0; */
+}
+#main2text{
+    margin-top: 270px;
+            background-color: rgba(255, 255, 255, 0.6);
+            height: 400px;
+            width: 900px;
+            position: absolute;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 174, 218, 0.2);
+}
+#vision{
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 40px;
+    width: 75%;
+    height: 400px!important;
+}
+#mission{
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 40px;
+}
+.card_test{
+    display: flex;
+    justify-content: space-between;
+  }
+  .gos {
+   margin-left: 10px; 
+  }
+  .imgtext{
+    margin-left: 50px;
+  }
+  .missionimage{
+    background-color: red;
+    
+  }
+  #blueblur{
+    background-color:rgba(14, 162, 232,0.7);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+  }
+  @media(min-width:200px)and (max-width:576px){
+        .firstimage{
+            height: 500px;
+        }
+      .imgtext {
+        /* text-align: center; */
+        width: 60%!important;
+        margin-left: 20px!important;
+        margin-top: -100px!important;
+        font-size: 15px!important;
+        display:inline-block!important;
+      }
+      #main2text {
+        margin-top: 100px!important;
+        height: 280px;
+        width: 90%!important;
+      }
+      .main2lorem{
+          font-size: 9.1px;
+      }
+      .cards {
+        margin-bottom: 20px;
+      }
+      .card {
+        width: 100%;
+      }
+      .imglight{
+          width: 100%!important;
+      }
+      .imgtext{
+          width: 89%!important;
+          text-align: justify; 
+      }
+      .arrowimage{
+          width: 99%;
+          border-radius: 20px;
+      }
+      .circleimage{
+          width: 99%;
+          border-radius: 20px;
+      }
+      #vision {
+        width: 100%!important;
+          height: 200px!important; 
+          /* margin-left: 50px!important; */
+          margin-top: 3px;
+        }
+        .visiontext{
+          font-size: 6.5px!important;
+         
+      }
+      #mission{
+          width: 100%!important;
+          /* margin-left: 0px!important; */
+          height: 200px!important;
+          margin-top: -45px;
+
+        }
+        .missiontext{
+          font-size: 6.5px!important;
+          
+      }
+      .vision_main{
+          flex-direction: column;
+          
+      }
+      .missionimage{
+          height: 500px;
+          width: 100%;
+      }
+      .centercard{
+          display: flex;
+          justify-content: center;
+          width: 100%;
+      }
+      #cardimage{
+        margin:0px auto;
+      }
+      .cardcol{
+          width: 80%!important;
+      }
+      .carddiv{
+    
+          display: flex!important;
+          justify-content: center!important;
+      }
+      .gos{
+          display: flex;
+          justify-content: center;
+      }   
+    .card_test{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+     
+  }
+@media (min-width: 577px) and (max-width: 992px) {
+    
+    
+      .imgtext {
+        text-align: center;
+        width: 100%;
+        margin-top: 20px;
+      }
+      #main2text {
+        margin-top: 230px!important;
+        width: 90%;
+      }
+      .main2lorem{
+          font-size: 11.8px;
+      }
+      .cards {
+        margin-bottom: 20px;
+      }
+      .card {
+        width: 100%;
+      }
+      .imglight{
+          width: 100%!important;
+      }
+      .imgtext{
+          width: 89%!important;
+          text-align: justify; 
+      }
+      .arrowimage{
+          width: 99%;
+          border-radius: 20px;
+      }
+      .circleimage{
+          width: 99%;
+          border-radius: 20px;
+      }
+      #vision {
+         
+          height: 200px!important; 
+          /* margin-left: 50px!important; */
+          width: 100%!important;
+        }
+        .visiontext{
+          font-size: 13px!important;
+         
+      }
+      #mission{
+          margin-top: -24px;
+          /* margin-left: 50px!important; */
+        width: 100%!important;
+          height: 200px!important;
+        }
+        .missiontext{
+          font-size: 13px!important;
+          
+      }
+      .vision_main{
+          flex-direction: column;
+          
+      }
+      .missionimage{
+          height: 500px;
+          width: 100%;
+      }
+      .centercard{
+          display: flex;
+          justify-content: center;
+          width: 100%;
+      }
+      .cardcol{
+          width: 80%!important;
+      }
+      .carddiv{
+    
+          display: flex!important;
+          justify-content: center!important;
+      }
+      .gos{
+          display: flex;
+          justify-content: center;
+      }   
+    /* .card_test{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    } */
+  
+  }
+ /* @media(min-width:1023px) and(max-width: 1366px){
+    .arrowimage{
+        width: 100%;
+        border-radius: 20px;
+    }
+    .circleimage{
+        width: 99%;
+        border-radius: 20px;
+    }
+  } */
+    
+  @media (min-width: 993px)and (max-width:1024px) {
+    
+    .text-light {
+        text-align: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+    #main2text {
+        margin-top: 200px;
+        width: 85%;
+    }
+    .cards {
+        margin-bottom: 20px;
+    }
+    .card {
+        width: 100%;
+    }
+    .imglight {
+        width: 100%;
+    }
+    .imgtext {
+        width: 25%;
+        text-align: justify;
+    }
+    #vision{
+
+        background-color: rgba(0, 0, 0, 0.3);
+        border-bottom-left-radius: 40px;
+        width: 75%;
+        
+    }
+    #mission{
+    
+        background-color: rgba(0, 0, 0, 0.3);
+        border-bottom-left-radius: 40px;
+    }
+    .card_test{
+        display: flex;
+        justify-content: space-between;
+      }
+      .gos {
+       margin-left: 10px; 
+      }
+      .arrowimage{
+        width: 100%;
+        border-radius: 20px;
+    }
+    .circleimage{
+        width: 99%;
+        border-radius: 20px;
+    }
+    
+} 
+
+
+  

@@ -1,0 +1,19 @@
+
+.form-group{
+    padding: 20px;
+}
+.btn{
+    margin-left: 20px;   
+}
+body {
+    background-color: darkblue;
+  }
+
+  .main {
+    border-radius: 20px;
+    background-color: white;
+    width: 80%;
+    max-width: 600px; /* Adjusted maximum width for responsiveness */
+    margin: 150px auto;
+    padding: 20px;
+  }

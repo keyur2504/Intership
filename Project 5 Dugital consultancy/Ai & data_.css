@@ -1,0 +1,58 @@
+/*============================================== page 4 css==================================== */
+.maintext{
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    color: white;
+}           
+
+@media (max-width: 767px) {
+    
+    .aimi_img div {
+      left: 50%;
+      transform: translateX(-50%); /
+    }
+    .sevenimage div{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        
+    }
+    .sevenimage div img{
+        width: 70%;
+    
+    }
+    .maintext{
+        margin-top: -170px;
+    }
+    .para{
+        text-align: center;
+    }
+}
+@media (max-width: 991px) {
+    .aimi_img div {
+      left: 50%;
+      transform: translateX(-50%); /* Center align text */
+    }
+    .fourimage{
+        width: 95%;
+    }
+    .sevenimage div {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .sevenimage div img {
+      width: 70%; /* Adjust image width */
+    }
+    .maintext {
+      margin-top: -170px; /* Adjust margin-top */
+    }
+    .para {
+      text-align: center; /* Center align paragraph text */
+    }
+  }
+
+  
+ 

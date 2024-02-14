@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* overflow-y: hidden; */
+}
+.bgcolor{
+    background-color: #cfa767/200;
+}
+#exampleCheck1:checked {
+    background-color: #cfa767;
+}
+
+.img-fluid {
+    width: 100%;
+    height: 100vh;
+}
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.text2 {
+    width: 452px;
+    height: 308px;
+}
+
+.text1 {
+    top: 39px;
+    left: 86px;
+    height: 308px;
+    width: 452px;
+}
+
+.lorem {
+    font-size: 1vw;
+    max-width: 30vw;
+    line-height: 2vw;
+    font-family: poppins;
+    color: #cfa767;
+}
+
+.bimg {
+    top: 80%;
+    left: 45.9%;
+    transform: translate(-50%, -50%);
+    max-width: 25%;
+    height: auto;
+}
+
+.limg {
+    width: 10vw;
+    height: 5vw;
+    font-size: 2.5vw;
+    font-weight: 700;
+    font-family: poppins;
+}
+.sign{
+    font-size: 40px;
+    font-weight: 700;
+    font-family: poppins;
+}
+.welcome {
+    font-size: 1.3vw;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.help {
+    margin-top: -7vw;
+    float: right;
+}
+
+#btn {
+    background-color: #cfa767;
+    width: 100%;
+    font-size: 1.4rem;
+}
+
+.link {
+    color: #cfa767;
+}
+
+.para {
+    text-align: center;
+}
+
+.acc {
+    text-align: center;
+}
+#forpassword{
+    float: right;
+    text-decoration: none;
+    color: black;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 767px) {
+    
+    #loginpng{
+        height: 500px;
+        /* width: 98%; */
+    }
+    .text1 {
+        left: 20px;
+        width: 90%;
+    }
+    .text2 {
+        width: 350px;
+        height: 258px;
+    }
+    .lorem {
+        font-size: 4vw;
+        max-width: 100%;
+        line-height: 5vw;
+        margin-top: 25px;
+    }
+    .bimg {
+        display: none;
+    }
+
+    .limg {
+        width: 30vw;
+        height: 15vw;
+        font-size: 4vw;
+    }
+    .sign {
+        font-size: 40px;
+        font-weight: 600;
+    }
+    .welcome {
+        font-size: 4vw;
+    }
+
+    .help {
+        margin-top: -23vw;
+        font-size: 20px;
+    }
+}
+
+/* Media Query for tablets */
+@media (min-width: 768px) and (max-width: 1368px) {
+    .text1 {
+        left: 20px;
+        width: 90%;
+    }
+    .text2 {
+        width: 420px;
+        height: 358px;
+    }
+    .img-fluid {
+        height: 100vh;
+    }
+    .lorem {
+        font-size: 4vw;
+        max-width: 60%;
+        line-height: 5vw;
+        margin-top: 25px;
+    }
+    .bimg {
+        width: 100vw;
+        height: 300px;
+        margin-top: 90px;
+    }
+
+    .limg {
+        width: 30vw;
+        height: 15vw;
+        font-size: 4vw;
+    }
+    .sign {
+        font-size: 40px;
+        font-weight: 600;
+    }
+    .welcome {
+        font-size: 4vw;
+    }
+
+    .help {
+        margin-top: -27vw;
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 2560px){
+    .text1 {
+        left: 20px;
+        width: 80%;
+    }
+    .text2 {
+        width: 600px;
+        height: 458px;
+    }
+    .img-fluid {
+        height: 100vh;
+    }
+    .lorem {
+        font-size: 2vw;
+        max-width: 50%;
+        line-height: 3vw;
+        margin-top: 20px;
+    }
+    .bimg {
+        width: 80%;
+        height: auto;
+        margin-top: 50px;
+    }
+    .limg {
+        width: 20vw;
+        height: 6vw;
+        font-size: 2.5vw;
+    }
+    .sign {
+        font-size: 100px;
+        font-weight: 600;
+    }
+    .welcome {
+        font-size: 3vw;
+    }
+    .help {
+        margin-top: -15vw;
+        font-size: 70px;
+        margin-right: 100px;
+    }
+    .welcome{
+        font-size: 50px;
+    }
+    #lab{
+        font-size: 40px;
+      }
+    #email{
+        height: 100px;
+        font-size: 50px;
+    }
+    #password{
+        height: 100px;
+        font-size: 50px;
+    }
+    .form-check-input{
+        height: 60px;
+        width: 60px;
+    }
+    #forpassword{
+        font-size: 40px;
+        float: right;
+    }
+    .acc{
+        font-size: 40px;
+    }
+    .para{
+        font-size: 40px;
+    }
+}
+@media (min-width: 3840px) {
+    .text1 {
+        left: 20px;
+        width: 80%;
+    }
+    .text2 {
+        width: 600px;
+        height: 458px;
+    }
+    .img-fluid {
+        height: 100vh;
+    }
+    .lorem {
+        font-size: 2vw;
+        max-width: 50%;
+        line-height: 3vw;
+        margin-top: 20px;
+    }
+    .bimg {
+        width: 80%;
+        height: auto;
+        margin-top: 50px;
+    }
+    .limg {
+        width: 20vw;
+        height: 10vw;
+        font-size: 2.5vw;
+    }
+    .sign {
+        font-size: 180px;
+        font-weight: 600;
+    }
+    .welcome {
+        font-size: 3vw;
+    }
+    .help {
+        margin-top: -14vw;
+        font-size: 70px;
+        margin-right: 100px;
+    }
+    #lab{
+        font-size: 60px;
+      }
+    #email{
+        height: 100px;
+        font-size: 50px;
+    }
+    #password{
+        height: 100px;
+        font-size: 50px;
+    }
+    .form-check-input{
+        height: 100px;
+        width: 100px;
+    }
+    #forpassword{
+        font-size: 50px;
+        float: right;
+    }
+    .acc{
+        font-size: 50px;
+    }
+    .para{
+        font-size: 50px;
+
+    }
+}

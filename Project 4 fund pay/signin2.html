@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Option 1: Include in HTML -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="style2.css" />
+    <style>
+      .error-message {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col" style="background-color: #CFA767/100">
+        <div class="main2 p-4">
+          <div class="logo">
+            <img
+              src="logo2.png"
+              alt=""
+              width="178px"
+              height="54.36px"
+              class="mb-5 mt-5 limg"
+            />
+            <p class="sign">Sign in</p>
+            <p class="welcome">Welcome Login with your FUND PAY account.</p>
+            <p class="help">
+              Help
+              <i class="bi bi-question-circle-fill" style="color: #cfa767"></i>
+            </p>
+          </div>
+          <div class="form mt-5">
+            <label for="name" class="label" id="lab"
+              >Email Address/Mobile Number</label
+            >
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              placeholder="abc@gmail.com"
+              oninput="clearErrorMessage('email-error')"
+            />
+            <div id="email-error" class="error-message"></div>
+            <label for="password" class="label mt-3" id="lab">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              oninput="clearErrorMessage('password-error')"
+            />
+            <div id="password-error" class="error-message"></div>
+            <div class="form-check mt-3">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+              />
+              <label class="form-check-label" for="exampleCheck1" id="lab"
+                >Remember me</label
+              >
+              <label class="form-check-label ml-4" id="forpassword"
+                ><a href="#" id="forpassword">Forget Password</a></label
+              >
+            </div>
+            <button
+              class="btn btn-lg mt-4"
+              id="btn"
+              onclick="return validateForm();"
+            >
+              LOGIN
+            </button>
+            <p class="text mt-4 acc">
+              Doesn’t have any account?
+              <a href="" class="link">Register here</a>
+            </p>
+            <p class="text mt-4 para">
+              Use the application according to policy rules. Any kinds of
+              violations will be subject to sanctions
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function validateForm() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var isValid = true;
+
+        if (email.trim() === "") {
+          document.getElementById("email-error").innerHTML =
+            "Email is required.";
+          isValid = false;
+        } else {
+          document.getElementById("email-error").innerHTML = "";
+        }
+
+        if (password.trim() === "") {
+          document.getElementById("password-error").innerHTML =
+            "Password is required.";
+          isValid = false;
+        } else {
+          document.getElementById("password-error").innerHTML = "";
+        }
+
+        return isValid;
+      }
+
+      function clearErrorMessage(elementId) {
+        document.getElementById(elementId).innerHTML = "";
+      }
+    </script>
+  </body>
+</html>

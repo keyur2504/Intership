@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Data</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="content">
+      <nav class="navbar bg-primary">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Your ToDo</span>
+        </div>
+      </nav>
+      <div id="main3">
+        <div class="form">
+          <form>
+            <table class="table">
+              <tr>
+                <td>Description</td>
+                <td>
+                  <input type="text" id="description" />
+                </td>
+              </tr>
+
+              <tr>
+                <td>Add User</td>
+                <td>
+                  <button type="button" onclick="popup()" id="add3">+</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p id="ans"></p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button
+                    class="btn btn-outline-warning"
+                    type="button"
+                    onclick="update()"
+                  >
+                    Update
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Task Details View</h5>
+          </div>
+          <div class="modal-body">
+            <span>Name <span id="add1"></span></span>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              onclick="addUsers()"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      function popup() {
+        var modal = new bootstrap.Modal(document.querySelector(".modal"));
+        setTimeout(function () {
+          modal.show();
+
+          console.log(
+            "Data from sessionStorage:",
+            sessionStorage.getItem("data")
+          );
+          // This line seems to be unused, consider removing it
+          // sessionStorage.getItem("allUsersData");
+        }, 100);
+      }
+
+      function getdata() {
+        var uid = sessionStorage.getItem("id");
+
+        fetch("http://192.168.29.183:8000/users?current_user_id=" + uid, {
+          headers: {
+            accept: "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            var card6 = "<div>";
+            x = res;
+            res.map((z, index) => {
+              card6 +=
+                "<label><input type='checkbox' name='userCheckbox' value='" +
+                index +
+                "'>" +
+                z.firstname +
+                " " +
+                z.lastname +
+                "</label><br>";
+            });
+            card6 += "</div>";
+            var des = sessionStorage.getItem("description");
+            var users = sessionStorage.getItem("allUsersData");
+
+            document.getElementById("description").value = des;
+            document.getElementById("ans").innerHTML = users;
+
+            document.getElementById("add1").innerHTML = card6;
+          })
+          .catch((error) => {
+            alert("something went wrong in get data");
+          });
+      }
+      getdata();
+
+      function addUsers() {
+        var selectedUsers = [];
+        var checkboxes = document.getElementsByName("userCheckbox");
+        checkboxes.forEach(function (checkbox) {
+          if (checkbox.checked) {
+            var userIndex = checkbox.value;
+            selectedUsers.push(
+              x[userIndex].firstname + " " + x[userIndex].lastname
+            );
+          }
+        });
+        // .catch((error) => {
+        //   alert("something went wrong in add user");
+        // });
+
+        var ansDiv = document.getElementById("ans");
+        ansDiv.innerHTML = selectedUsers.join(", ");
+
+        var updatedData = selectedUsers.join(", ");
+        sessionStorage.setItem("data", updatedData);
+        console.log("Updated data in sessionStorage:", updatedData);
+        // This line seems to be unused, consider removing it
+        // sessionStorage.getItem("allUsersData");
+      }
+
+      // function check() {
+      //   var allUsersData = sessionStorage.getItem("allUsersData");
+      //   var udata = sessionStorage.getItem("data");
+      //   var checkboxes = document.getElementsByName("userCheckbox");
+
+      //   checkboxes.forEach(function (checkbox) {
+      //     var userIndex = checkbox.value;
+      //     var fullName = x[userIndex].firstname + " " + x[userIndex].lastname;
+
+      //     // Combine the conditions to set checkbox.checked once
+      //     checkbox.checked =
+      //       isSelectedUser(fullName, udata) ||
+      //       isSelectedUser(fullName, allUsersData);
+      //   });
+
+      //   console.log("Checking data from sessionStorage:", udata);
+      // }
+
+      // function isSelectedUser(fullName, data) {
+      //   if (data) {
+      //     var selectedUsers = data.split(", ");
+      //     for (var i = 0; i < selectedUsers.length; i++) {
+      //       if (selectedUsers[i] === fullName) {
+      //         return true;
+      //       }
+      //     }
+      //   }
+      //   return false;
+      // }
+
+      // check();
+
+      function update() {
+        var description = document.getElementById("description").value;
+
+        var selectedUserIds = [];
+        var checkboxes = document.getElementsByName("userCheckbox");
+
+        checkboxes.forEach(function (checkbox) {
+          if (checkbox.checked) {
+            var userIndex = checkbox.value;
+            selectedUserIds.push(x[userIndex].id);
+          }
+        });
+
+        var uid = sessionStorage.getItem("id");
+        var tid = sessionStorage.getItem("taskid");
+
+        fetch(
+          "http://192.168.29.183:8000/update_task/" + tid + "?owner_id=" + uid,
+          {
+            method: "PUT",
+            headers: {
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              description: description,
+              user_ids: selectedUserIds,
+            }),
+          }
+        ).then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to update task");
+          }
+
+          alert("Task updated successfully");
+          window.location.href = "runningtask.html";
+        });
+        // .catch((error) => {
+        //   alert("Something  went wrong when updating the task");
+        // });
+        sessionStorage.removeItem("allUsersData");
+        sessionStorage.removeItem("description");
+      }
+    </script>
+  </body>
+</html>

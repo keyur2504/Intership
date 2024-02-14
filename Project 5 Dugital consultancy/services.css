@@ -1,0 +1,48 @@
+
+.rounded-input {
+    border-radius: 15px!important;
+}
+#heading{
+    color: #ff48aa;
+}
+footer p{
+    background-color: #ff48aa;
+    color: white;
+}
+.address{
+    color: #ff48aa;
+}
+#button{
+    color: white;
+    background-color: #ff48aa;
+}
+#support{
+    color: #ff48aa;
+}
+#image{
+    border-radius: 20px;
+}
+.main{
+    background-color: #3e85ff;
+}
+.main2{
+    background-image:linear-gradient(to right,#ff48aa,white)
+}
+.background{
+    background-color: #3e85ff;
+}
+
+
+/* @media (max-width: 768px) {
+   
+    .navbar-collapse {
+        justify-content: center; 
+    }
+    
+}
+
+@media (max-width: 576px) {
+    .text {
+        font-size: 14px; 
+    }   
+} */

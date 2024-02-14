@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Running Task</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="content">
+      <nav class="navbar bg-primary">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Your ToDo</span>
+        </div>
+        <div class="navbar-button">
+          <button class="btn btn-outline-light logout" onclick="logout()">
+            Logout
+          </button>
+        </div>
+      </nav>
+      <div id="main2">
+        <button class="btn btn-outline-primary">
+          <a href="runningtask.html" class="text-light link">Running Task</a>
+        </button>
+        <button class="btn btn-outline-primary">
+          <a href="home.html" class="text-light link">Complete Task</a>
+        </button>
+      </div>
+      <div class="main container">
+        <div class="heading">
+          Running task
+          <hr />
+          <button class="btn btn-primary text-light" id="btn">
+            <a href="add.html" class="text-white" style="text-decoration: none"
+              >Add Task</a
+            >
+          </button>
+          <hr />
+        </div>
+
+        <div id="runningTasksContainer"></div>
+      </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Task Details View</h5>
+          </div>
+          <div class="modal-body">
+            <h5>Title: <span id="txtbox6"></span></h5>
+            <h5>Description: <span id="txtbox7"></span></h5>
+            <h5>Priority: <span id="txtbox8"></span></h5>
+            <h5>Start Date: <span id="txtbox9"></span></h5>
+            <h5>End Date: <span id="txtbox10"></span></h5>
+            <h5>Owner Name: <span id="txtbox11"></span></h5>
+            <h5>
+              Users: <span id="txtbox12"></span> <span id="txtbox13"></span>
+            </h5>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              data-bs-dismiss="modal"
+              onclick="close()"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-success"
+              id="btncp"
+              onclick="complete()"
+            >
+              COMPLETE
+            </button>
+            <a href="edit.html" style="text-decoration: none" id="editLink">
+              <button type="button" class="btn btn-outline-warning" id="btned">
+                Edit
+              </button>
+            </a>
+            <button type="button" class="btn btn-outline-info">CHAT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function close() {
+        sessionStorage.removeItem("owner_id");
+        console.log("done");
+      }
+      async function popup(taskId) {
+        sessionStorage.setItem("taskid", taskId);
+        sessionStorage.getItem("description");
+        sessionStorage.getItem("allUsersData");
+        sessionStorage.getItem("allUsersIds");
+
+        await getdata2();
+        await sleep(500);
+        getdata3();
+        var k = sessionStorage.getItem("owner_id");
+        var k1 = sessionStorage.getItem("id");
+        var modal = new bootstrap.Modal(document.querySelector(".modal"));
+
+        var btnComplete = document.getElementById("btncp");
+        var btnEdit = document.getElementById("btned");
+        var linkEdit = document.getElementById("editLink");
+
+        if (k === k1) {
+          btnComplete.style.display = "block";
+          btnEdit.style.display = "block";
+          linkEdit.href = "edit.html"; // Set the correct href for the Edit button
+          console.log(true);
+        } else {
+          btnComplete.style.display = "none";
+          btnEdit.style.display = "none";
+          console.log(false);
+        }
+        modal.show();
+        handleButtonVisibility();
+      }
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      function handleButtonVisibility() {
+        var uid = sessionStorage.getItem("id");
+        var owner_id = sessionStorage.getItem("owner_id");
+
+        console.log("uid:", uid);
+        console.log("owner_id:", owner_id);
+      }
+
+      // Call handleButtonVisibility after getting the running tasks
+
+      handleButtonVisibility();
+
+      function getdata() {
+        var uid = sessionStorage.getItem("id");
+
+        fetch(
+          "http://192.168.29.183:8000/get_running_tasks?current_user_id=" + uid,
+          {
+            headers: {
+              accept: "application/json",
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            var runningTasksContainer = document.getElementById(
+              "runningTasksContainer"
+            );
+
+            data.user_tasks.forEach((z) => {
+              var card =
+                "<div class='card' style='width: 100%' onclick='popup(" +
+                z.task_id +
+                ")'>" +
+                "<div class='card-body'>" +
+                "<h5 class='card-title'> Title:-" +
+                "<p class='text'>" +
+                z.title +
+                "</p></h5>" +
+                "<h5 class='card-title'> Priority:-" +
+                "<p class='text2'>" +
+                z.priority +
+                "</p></h5>" +
+                "<h5 class='card-title'> Owner:-" +
+                "<p class='text3'>" +
+                z.owner_id +
+                "</p></h5>" +
+                "<h5 class='card-title stime'> Start Date:-" +
+                "<p class='text4'>" +
+                z.start_date +
+                "</p></h5>" +
+                "<h5 class='card-title ltime'> End Date:-" +
+                "<p class='text5'>" +
+                z.end_date +
+                "</p></h5>" +
+                "</div>" +
+                "</div>";
+
+              runningTasksContainer.innerHTML += card;
+
+              // Set owner_id in sessionStorage
+            });
+          })
+          .catch((error) => {
+            alert("Something went wrong in get data ");
+          });
+      }
+
+      getdata();
+
+      function getdata2() {
+        var taskid = sessionStorage.getItem("taskid");
+        fetch("http://192.168.29.183:8000/getTaskById/" + taskid, {
+          headers: {
+            accept: "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log(res.task_details.title);
+
+            sessionStorage.setItem("owner_id", res.task_details.owner_id);
+            var card = "<p>" + res.task_details.title + "</p>";
+            var card1 = "<p>" + res.task_details.description + "</p>";
+            var card2 = "<p>" + res.task_details.priority + "</p>";
+            var card3 = "<p>" + res.task_details.start_date + "</p>";
+            var card4 = "<p>" + res.task_details.end_date + "</p>";
+            var card5 =
+              "<span>" +
+              res.task_details.owner_firstname +
+              "</span>" +
+              " " +
+              "<span>" +
+              res.task_details.owner_lastname +
+              "</span>";
+
+            sessionStorage.setItem("description", res.task_details.description);
+
+            document.getElementById("txtbox6").innerHTML = card;
+            document.getElementById("txtbox7").innerHTML = card1;
+            document.getElementById("txtbox8").innerHTML = card2;
+            document.getElementById("txtbox9").innerHTML = card3;
+            document.getElementById("txtbox10").innerHTML = card4;
+            document.getElementById("txtbox11").innerHTML = card5;
+          })
+          .catch((error) => {
+            alert("Something went wrong in displaying data ");
+          });
+      }
+
+      function getdata3() {
+        var tid = sessionStorage.getItem("taskid");
+
+        fetch("http://192.168.29.183:8000/getTaskById/" + tid, {
+          headers: {
+            accept: "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            var usersData = ""; // String to store user data
+            var userIds = []; // Array to store user IDs
+
+            var card6 = "<div>";
+            res.task_details.assigned_users.map((z, index) => {
+              var userFullName = z.firstname + " " + z.lastname;
+              var userId = z.user_id;
+              card6 += "<p>" + userFullName + "</p>";
+
+              usersData += userFullName;
+
+              userIds.push(userId);
+
+              if (index < res.task_details.assigned_users.length - 1) {
+                usersData += ", ";
+              }
+            });
+            card6 += "</div>";
+
+            sessionStorage.setItem("allUsersData", usersData);
+            sessionStorage.setItem("allUsersIds", JSON.stringify(userIds));
+
+            console.log(res.task_details.assigned_users);
+            document.getElementById("txtbox12").innerHTML = card6;
+          })
+          .catch((error) => {
+            alert("Something went wrong in displaying data ");
+          });
+      }
+
+      function complete() {
+        var uid = sessionStorage.getItem("id");
+        var tid = sessionStorage.getItem("taskid");
+        fetch(
+          "http://192.168.29.183:8000/complete_task/" +
+            tid +
+            "?owner_id=" +
+            uid,
+          {
+            method: "PUT",
+            headers: {
+              accept: "application/json",
+            },
+          }
+        ).catch((error) => {
+          alert("Something went weong in Compalete data");
+        });
+        window.location.href = "runningtask.html";
+      }
+
+      function logout() {
+        sessionStorage.removeItem("id");
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>

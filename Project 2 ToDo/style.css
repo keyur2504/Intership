@@ -1,0 +1,244 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color:lightskyblue;
+}
+.main{
+
+    width: 70%;
+    background-color: white;
+    margin:130px auto;
+    /* left: 50%; */
+}
+.heading{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+.link{
+    text-decoration: none;
+}
+#main2{
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 600px;
+}
+#btn{
+    margin-left: 90%;
+}
+.text{
+    margin-left: 70px;
+    margin-top: -25px;
+}
+.text2{
+    margin-left: 100px;
+    margin-top: -25px;
+}
+.text3{
+    margin-left: 100px;
+    margin-top: -22px;
+}
+.text4{
+    margin-left: 110px;
+    margin-top: -25px;
+}
+.text5{
+    margin-left: 100px;
+    margin-top: -25px;
+}
+.stime{
+    margin-left: 300px;
+    margin-top: -60px;
+}
+.ltime{
+    margin-left: 700px;
+    margin-top: -30px;
+}
+
+#txtbox6{
+    margin-left: 100px;
+    margin-top: -25px;
+}
+#txtbox7{
+    margin-left: 150px;
+    margin-top: -25px;
+}
+#txtbox8{
+    margin-left: 100px;
+    margin-top: -25px;
+}
+#txtbox9{
+    margin-left: 130px;
+    margin-top: -25px;
+}
+#txtbox10{
+    margin-left: 120px;
+    margin-top: -25px;
+}
+#txtbox11{
+    margin-left: 150px;
+    margin-top: -25px;
+}
+
+#main3{
+    height: 100%;
+    width: 500px;
+    background-color: white;
+    margin: auto 30%;
+}
+#dis{
+    font-size: 20px;
+    margin-top: 40px;
+    margin-left: -470px;
+}
+.logout{
+    margin-left: 1400px;
+    margin-top: -50px;
+
+}
+@media screen and (max-width: 767px) {
+    .main {
+        width: 70%;
+        background-color: white;
+        margin:130px auto;
+    }
+
+    .heading{
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+    }
+    #btn{
+        margin-left: 70%;
+    }
+    #main2{
+        position: absolute;
+        margin-top: 60px;
+        margin-left: 160px;
+    }
+   .text5{
+    margin-left: 100px;
+    margin-top: -25px;
+    }
+    .ltime{
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+    .text4{
+        margin-left: 110px;
+        margin-top: -25px;
+    }
+    .stime{
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+    .logout{
+        margin-left: 450px;
+        margin-top: -50px;
+    }
+    #main3{
+        height: 100%;
+        width: 500px;
+        background-color: white;
+        margin: auto 5%;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+    
+    .main {
+        width: 70%;
+        background-color: white;
+        margin:130px auto;
+    }
+
+    .heading{
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+    }
+    #btn{
+        margin-left: 80%;
+    }
+    #main2{
+        position: absolute;
+        margin-top: 60px;
+        margin-left: 440px;
+    }
+   .text5{
+    margin-left: 100px;
+    margin-top: -25px;
+    }
+    .ltime{
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+    .text4{
+        margin-left: 120px;
+        margin-top: -25px;
+    }
+    .stime{
+        margin-left: 250px;
+        margin-top: 0px;
+    }
+    .logout{
+        margin-left: 950px;
+        margin-top: -50px;
+    }
+    #main3{
+        height: 100%;
+        width: 500px;
+        background-color: white;
+        margin: auto 20%;
+    }
+}
+@media screen and (min-width: 1200px) and(max-width:1200px) {
+    .main {
+        width: 70%;
+        background-color: white;
+        margin:130px auto;
+    }
+
+    .heading{
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+    }
+    #btn{
+        margin-left: 80%;
+    }
+    #main2{
+        position: absolute;
+        margin-top: 60px;
+        margin-left: 550px;
+    }
+   .text5{
+    margin-left: 100px;
+    margin-top: -25px;
+    }
+    .ltime{
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+    .text4{
+        margin-left: 120px;
+        margin-top: -25px;
+    }
+    .stime{
+        margin-left: 250px;
+        margin-top: 0px;
+    }
+    .logout{
+        margin-left: 1250px;
+        margin-top: -50px;
+    }
+    #main3{
+        height: 100%;
+        width: 500px;
+        background-color: white;
+        margin: auto 20%;
+    }
+
+}

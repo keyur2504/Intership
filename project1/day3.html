@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function add() {
+        var num1 = document.getElementById("txt1").value;
+        var num2 = document.getElementById("txt2").value;
+
+        var z = {
+          name: num1,
+          password: num2,
+        };
+        fetch("http://localhost:3000/data", {
+          method: "post",
+          headers: { "content-Type": "application/json" },
+          body: JSON.stringify(z),
+        });
+        // display1()
+      }
+      function display1() {
+        fetch("http://localhost:3000/data")
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            z = data;
+            var table = "<table border=1>";
+            
+              data.map((i) => {
+                
+                table +=  "<tr><td>" +i.name +"</td>";
+                table +=  "<td>" +i.password +"</td><td><button onclick='delete1(" +i.id +")'>Delete</button></td></tr>";
+              
+              });
+            table += "</table>";
+            document.getElementById("ans").innerHTML = table;
+          });
+      }
+
+      function delete1(id) {
+        fetch("http://localhost:3000/data/" + id, {
+          method: "delete",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(z),
+        });
+      }
+      display1();
+    </script>
+  </head>
+  <body>
+    <input type="text" name="" id="txt1" />
+    <input type="text" name="" id="txt2" />
+    <input type="button" value="Add" onclick="add()" />
+    <div id="ans"></div>
+  </body>
+</html>

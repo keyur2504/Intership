@@ -1,0 +1,25 @@
+body{
+    background-color: darkblue;
+}
+.main{
+    border-radius: 10px;
+    background-color: white;
+    width: 40%;
+    margin-left: 450px;
+    margin-top: 150px;
+}
+.form-group{
+    padding: 20px;
+}
+.btn{
+    margin-left: 10px;   
+}
+.image{
+    background-color: rgb(157, 255, 0);
+    height: 40px;
+    width: 40px;
+    float: right;
+}
+img{
+    object-fit: cover; /* Maintain aspect ratio and cover the specified dimensions */
+}

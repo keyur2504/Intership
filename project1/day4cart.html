@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+        background-color: white;
+      }
+      .card-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+      }
+      .card {
+          flex-basis: 30%; 
+          max-width: 18rem;    
+          margin: 20px;
+          background-color:transparent;
+         padding: 20px;
+      }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer>
+        var totalPrice=0;
+        var max1=0;
+        function getdata(){
+            fetch("http://localhost:3000/a")
+            .then((res)=>{return res.json()})
+            .then((data)=>{
+                dispaly1(data)
+            });
+        }
+        getdata()
+        function dispaly1(data){
+            var tab="<div class='card-container'>"
+                data.map((z)=>{
+                    // tab+="<tr><td>"+z.id+"</td><td>"+z.title+"</td><td>"+z.price+"</td><td>"+z.description+"</td><td>"+z.category+"</td><td>"+"<img src="+z.image+" height='200px' width='200px'>"+"</td><td><button class='btn btn-danger' onclick='delete1("+z.id+")'>Remove</button></td><td><button onclick='plus("+z.id+","+z.price+" )' class='btn btn-info'>+</button></td><td><button class='btn btn-info' onclick='sub("+z.id+","+z.price+")'>-</button></td></tr>"
+                
+                  tab+="<div class='card' style='width:18rem'>"+"<img src="+z.image+" height='200px' width='200px'>"+"<div class='card-body'><h5 class='card-title'>"+z.title+"</h5> <p class='card-text'>"+"$"+z.price+"</p><button class='btn btn-danger' onclick='delete1("+z.id+")'>Remove</button><br><br>Quantity&nbsp;&nbsp;<button class='btn btn-outline-primary' onclick='addition("+z.id+","+z.price+")'>+</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-outline-primary' onclick='subtraction("+z.id+","+z.price+")'>-</button></div></div>"
+                })            
+                tab+="</div>"
+                document.getElementById("ans").innerHTML=tab   
+            }
+            
+            function delete1(id){
+                fetch("http://localhost:3000/a/"+id,{
+                    method:"delete",
+                    headers:{
+                        "Content-Type":"application/x-www-form-urlencoded"
+                    },
+                    
+                })
+            }
+            function addition(id, price) {
+            // code to increase quantity of item with id 'id'
+            totalPrice += price;
+            updateTotalPriceDisplay();
+            
+        }
+
+        function subtraction(id, price) {
+            // code to decrease quantity of item with id 'id'
+            totalPrice -= price;
+            updateTotalPriceDisplay();
+            
+        }
+
+        function updateTotalPriceDisplay() {
+            document.getElementById("txt1").textContent = totalPrice
+        }
+            function TotalPrice() {
+            fetch("http://localhost:3000/a")
+                .then((res) => { return res.json() })
+                .then((data) => {
+                    cartTotalPrice = data.reduce((total, item) => total + item.price, 0);
+                    document.getElementById("txt1").textContent = cartTotalPrice
+                    // console.log(total);
+                });
+        }
+        TotalPrice()
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="day4.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="day4cart.html">Cart</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li> -->
+              <!-- <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- <input type="button" value="View data" onclick="getdata()"> -->
+      <div id="ans">
+      </div>
+      
+        <div class="card" style="width: 18rem; float: right;">
+          <ul class="list-group list-group-flush">
+            <!-- <p class="list-group-item">Total Price of Cart=</p> -->
+            <li class="list-group-item">Total Price of Cart: $<span id="txt1">0.00</span></li>
+          </ul>
+        </div>
+</body>
+</html>
+<!-- <select id='qty'><option value='volvo'>1</option><option value='volvo'>2</option><option value='volvo'>3</option><option value='volvo'>4</option><option value='volvo'>5</option></select> -->
+<!-- Quantity<button class='btn btn-primary' onclick='addition("+z.id+","+z.price+")'>+</button> -->

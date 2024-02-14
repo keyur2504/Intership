@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body{
+            background-color:darkseagreen;
+        }
+    </style>
+    <script>
+        var x;
+        
+       function postdata() {
+        if(document.getElementById("btn").value=="Submit"){
+        var key=document.getElementById("txt1").value
+        var data={
+            "key":key
+        }
+        fetch("http://127.0.0.1:8000/post-example?value="+key,{
+            method:"POST",
+            headers:{"content-Type":"application/json"},
+            body:JSON.stringify(data)
+            
+        })
+        .then((res)=>res.json())
+        .then((a)=>{
+            alert("data added")
+            window.location.reload()
+        })
+        }else{
+            var key=document.getElementById("txt1").value
+            
+            fetch("http://127.0.0.1:8000/put-example/"+x+"?new_value="+key,{
+                method:"PUT",
+                headers:{"content-Type":"application/json"},
+                body:JSON.stringify({key:key})
+            })
+
+            getdata()
+            document.getElementById("btn").value="Submit"
+            document.getElementById("txt1").value=""
+            window.location.reload()
+        }
+    }
+    getdata()
+       function getdata(){
+        fetch("http://127.0.0.1:8000/get-example")
+        .then((res)=>{return res.json()})
+        .then((data1)=>{
+            data=data1
+            var tab="<table>"
+                for(var i=0;i<data.length;i++){
+                    tab+="<tr><td>"+data1[i].Name+"</td><td><button class='btn btn-danger' onclick='delete1("+data1[i].id+")'>Delete</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-warning' onclick='update1("+data1[i].id+","+'"'+data1[i].Name+'"'+")'>Update</button></td></tr>"
+                }
+                tab+="</table>"
+                document.getElementById("tdata").innerHTML=tab
+        })
+       }
+       function delete1(id){
+            fetch("http://127.0.0.1:8000/delete-example/"+id,{
+                method:'DELETE',
+                headers:{"content-Type":"application/json"},
+                body:JSON.stringify(data)
+            })
+            .then((res)=>res.json())
+            .then((z)=>{
+                alert('deleted')
+                window.location.reload()
+            })
+       }
+       function update1(id,key){
+            document.getElementById("txt1").value=key
+            document.getElementById("btn").value="Update"
+            x=id;
+            
+       }
+    </script>
+</head>
+<body>
+    <div>
+        <div class="text-center">
+            <h1>
+                CRUD
+            </h1>
+        </div>
+        <div class="row justify-content-center">
+            <form action="" class="main row justify-content-center">
+                <div class="col-10 mt-4">
+                    <label for="" class="form-label">Name</label>
+                    <input type="text" id="txt1" class="form-control" placeholder="Enter First Name">
+                </div>
+                <!-- <div class="col-10 mt-4">
+                    <label for="" class="form-label">Password</label>
+                    <input type="text" id="txt2" class="form-control" placeholder="Enter Last Name">
+                </div> -->
+               
+                <div class="col-10 mt-4">
+                    <input type="button" value="Submit" onclick="postdata()" id="btn" class="btn btn-success btn-block">
+                </div>
+            </form>
+            <div class="col-10 mt-5">
+                <table class="mt-5 table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tdata">
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>

@@ -1,0 +1,58 @@
+
+.form-group{
+    padding: 10px;
+}
+.btn{
+    margin-left: 20px;   
+}
+body {
+    background-color: darkblue;
+  }
+
+  .main {
+    border-radius: 20px;
+    background-color: white;
+    width: 80%;
+    max-width: 600px; /* Adjusted maximum width for responsiveness */
+    margin: 50px auto;
+    justify-content: center;
+    padding: 20px;
+  }
+  .preview {
+    color: #555;
+    width: 90%;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    letter-spacing: 8px;
+    border: 1px solid #888;
+    font-family: "monospace";
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .captcha-form {
+    display: flex;
+    width: 90%;
+    margin-left: 20px;
+  }
+
+  .captcha-refresh {
+    width: 40px;
+    border: none;
+    outline: none;
+    background: #888;
+    color: #eee;
+    cursor: pointer;
+  }
+
+  .preview span {
+    display: inline-block;
+    user-select: none;
+  }
+  .forget{
+    font-size: 20px;
+    margin-left: 200px;
+    color: blue;
+    cursor: pointer;
+  }

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complete Data</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <div class="content">
+      <nav class="navbar bg-primary">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1">Your ToDo</span>
+        </div>
+        <div class="navbar-button">
+          <button class="btn btn-outline-light logout" onclick="logout()">
+            Logout
+          </button>
+        </div>
+      </nav>
+      <div id="main2">
+        <button class="btn btn-outline-primary">
+          <a href="runningtask.html" class="text-light link">Running Task</a>
+        </button>
+        <button class="btn btn-outline-primary">
+          <a href="home.html" class="text-light link">Complete Task</a>
+        </button>
+      </div>
+      <div class="main container">
+        <div class="heading">
+          Complete task
+          <hr />
+          <button class="btn btn-primary text-light" id="btn">
+            <a href="add.html" class="text-white" style="text-decoration: none"
+              >Add Task</a
+            >
+          </button>
+          <hr />
+        </div>
+        <div id="cardsContainer"></div>
+      </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Task Details View</h5>
+          </div>
+          <div class="modal-body">
+            <h5>Title: <span id="txtbox6"></span></h5>
+            <h5>Description: <span id="txtbox7"></span></h5>
+            <h5>Priority: <span id="txtbox8"></span></h5>
+            <h5>Start Date: <span id="txtbox9"></span></h5>
+            <h5>End Date: <span id="txtbox10"></span></h5>
+            <h5>Owner Name: <span id="txtbox11"></span></h5>
+            <h5>
+              Users: <span id="txtbox12"></span> <span id="txtbox13"></span>
+            </h5>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function popup(taskId) {
+        sessionStorage.setItem("taskid", taskId);
+        var modal = new bootstrap.Modal(document.querySelector(".modal"));
+        modal.show();
+        getdata2();
+        getdata3();
+      }
+
+      function getdata() {
+        var uid = sessionStorage.getItem("id");
+        fetch(
+          "http://192.168.29.183:8000/get_complete_tasks?current_user_id=" +
+            uid,
+          {
+            headers: {
+              accept: "application/json",
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            var cardsContainer = document.getElementById("cardsContainer");
+
+            data.user_tasks.forEach((z) => {
+              var card =
+                "<div class='card' style='width: 100%' onclick='popup(" +
+                z.task_id +
+                ")'>" +
+                "<h5 class='card-title'> Title:-" +
+                "<p class='text'>" +
+                z.title +
+                "</p></h5>" +
+                "<h5 class='card-title'> Priority:-" +
+                "<p class='text2'>" +
+                z.priority +
+                "</p></h5>" +
+                "<h5 class='card-title'> Owner:-" +
+                "<p class='text3'>" +
+                z.owner_id +
+                "</p></h5>" +
+                "<h5 class='card-title stime'> Start Date:-" +
+                "<p class='text4'>" +
+                z.start_date +
+                "</p></h5>" +
+                "<h5 class='card-title ltime'> End Date:-" +
+                "<p class='text5'>" +
+                z.end_date +
+                "</p></h5>" +
+                "</div>";
+
+              cardsContainer.innerHTML += card;
+            });
+          })
+          .catch((error) => {
+            alert("something went wrong in Displaying the compalaterdata");
+          });
+      }
+
+      function getdata2() {
+        var uid = sessionStorage.getItem("taskid");
+        fetch("http://192.168.29.183:8000/getTaskById/" + uid, {
+          headers: {
+            accept: "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            document.getElementById("txtbox6").innerHTML =
+              "<p>" + res.task_details.title + "</p>";
+            document.getElementById("txtbox7").innerHTML =
+              "<p>" + res.task_details.description + "</p>";
+            document.getElementById("txtbox8").innerHTML =
+              "<p>" + res.task_details.priority + "</p>";
+            document.getElementById("txtbox9").innerHTML =
+              "<p>" + res.task_details.start_date + "</p>";
+            document.getElementById("txtbox10").innerHTML =
+              "<p>" + res.task_details.end_date + "</p>";
+            document.getElementById("txtbox11").innerHTML =
+              "<span>" +
+              res.task_details.owner_firstname +
+              "</span>" +
+              " " +
+              "<span>" +
+              res.task_details.owner_lastname +
+              "</span>";
+          })
+          .catch((error) => {
+            alert("something went wrong in get data");
+          });
+      }
+
+      function getdata3() {
+        var tid = sessionStorage.getItem("taskid");
+        fetch("http://192.168.29.183:8000/getTaskById/" + tid, {
+          headers: {
+            accept: "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            var card6 = "<div>";
+            res.task_details.assigned_users.forEach((z) => {
+              card6 += "<p>" + z.firstname + " " + z.lastname + "</p>";
+            });
+            card6 += "</div>";
+
+            document.getElementById("txtbox12").innerHTML = card6;
+          })
+          .catch((error) => {
+            alert("something went wrong in get data");
+          });
+      }
+      if (!sessionStorage.getItem("id")) {
+        window.location.href = "login.html";
+      }
+      getdata();
+
+      function logout() {
+        sessionStorage.removeItem("id");
+        // sessionStorage.removeItem("firstname");
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>

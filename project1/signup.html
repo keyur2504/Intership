@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: blue;
+        }
+        .form{
+            
+            background-color:white;
+            height: 450px;
+            width: 500px;
+            margin-top: 100px;   
+        }
+    </style>
+    <script>
+        function add(){
+            var num1=document.getElementById("txt1").value
+            var num2=document.getElementById("txt2").value
+            var z={
+                "name":num1,
+                "password":num2
+            }
+            fetch("http://localhost:3000/data",{
+                method:"POST",
+                headers:{"content-Type":"application/json"},
+                body:JSON.stringify(z)
+            })
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar bg-dark">
+        <div class="container-fluid ">
+          <a class="navbar-brand text-white " href="#">
+            Govardhan Institute
+          </a>
+        </div>
+      </nav>
+    <center>
+    <div class="center form">
+        <h1 class="text text-center">Signup</h1>
+        <form action="">
+            <table class="table">
+                <tr>
+                    <td>
+                        <input type="text" id="txt1" class="form-control mt-5" placeholder="Enter Your Name" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="" id="txt2" class="form-control mt-3" placeholder="Enter Your Password">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <hr class="m-5">
+        <p><a href="login.html">If you have already login...click here</a></p>
+        <a href="login.html"><button class="btn btn-success" onclick="add()" id="btn">Signup</button></a>
+    </div>
+</center>
+</body>
+</html>
